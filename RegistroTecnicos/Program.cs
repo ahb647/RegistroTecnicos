@@ -10,9 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddControllers();
+builder.Services.AddHttpClient();  
+
 builder.Services.AddDbContext<TecnicoContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConStr"));
 });
 
 
@@ -34,7 +37,7 @@ app.UseHttpsRedirection();
 
 
 app.UseAntiforgery();
-
+app.MapControllers();
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

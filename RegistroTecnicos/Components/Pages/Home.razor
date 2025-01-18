@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject HttpClient Http
 
 <PageTitle>Home</PageTitle>
 <br />
@@ -6,11 +7,21 @@
 
 <br/> 
 <p>concectando con el servidor...</p>
-<p>Conectando la base de datos de los TEcnicos ...</p>
+<p>Conectando la base de datos de los Tecnicos ...</p>
 
 @code{
+    String ConexionServidor = "En espera...";
+    string ConexionTecnicos = "En espera...";
 
-    String ConecxionServidos
+    async Task ProbarConexion()
+    {
+
+        var respuesta = await Http.GetStringAsync("https://https://localhost:7294/api/Tecnicos/ConexionServidor");
+        var respuestaTecnico = await Http.GetStringAsync("https://https://localhost:7294/api/Tecnicos/ConexionTecnico");
+        ConexionServidor = respuesta;
+        ConexionTecnicos = respuestaTecnico;
+    }
+
 
 
 }

@@ -1,44 +1,52 @@
 ﻿@page "/Tecnicos"
-
+@inject HttpClient Http
+@using RegistroTecnicos.Models
+@inject TecnicoContext DbContext
 
 <PageTitle>Tecnicos</PageTitle>
 
 <h3>Tecnicos</h3>
 
 <p>Tabla general de Tecnicos</p>
-<table> class = "table">
-    <thread>  
+<table class="table">
+    <thead>
         <tr>
-
             <th>Id</th>
             <th>Nombre</th>
             <th>Sueldo por hora</th>
-        </tr>    
-    </thread>
-
- <tbody>
-
+        </tr>
+    </thead>
+    <tbody>
         <tr>
-            <td>
-                1
-                Juan perez
-                30000
-            </td>
-        </tr
+            <td>1</td>
+            <td>Juan Perez</td>
+            <td>30000</td>
+        </tr>
     </tbody>
 </table>
-   
+
 <br />
 <label>Id</label>
-<input type="int"/>
-<label>Nombre</label>
-<input type="Text"/>
-<label>Sueldo por Hora</label>
-<input type="int"/>
+<input type="number" @bind-value="tecnico.IdTecnico"/>
 <br />
-<botton> class = "bin-primary"> añadir Tecnico</botton>
+<label>Nombre</label>
+<input type="text" @bind-value="tecnico.Nombre"/>
+<br />
+<label>Sueldo por Hora</label>
+<input type="number" @bind-value="tecnico.SueldoHora"/>
+<br />
+<button class="btn-primary" @onclick="CrearTecnico">Añadir Tecnico</button>
 
 
-@code {
 
-}
+    @code {
+        string Respuesta = "Procesando.....";
+        private Tecnicos tecnico = new Tecnicos();
+
+        async Task CrearTecnico()
+        {
+            var respuesta = await Http.PostAsJsonAsync("api/Tecnicos/NuevoTecnico", tecnico);
+            string contenido = await respuesta.Content.ReadAsStringAsync();
+            // Aquí podrías manejar la respuesta, por ejemplo, actualizar la UI o mostrar un mensaje
+        }
+    }
