@@ -1,0 +1,68 @@
+﻿@page "/movimientos"
+
+
+<h3>Movimientos</h3>
+
+<PageTitle>Movimientos</PageTitle>
+
+<h1>Movimientos </h1>
+<table class="table">
+
+    <thread> 
+     <tr> 
+
+
+         <th> scope ="col">#</th>
+         <th> scope ="col">Id</th>
+         <th> scope ="col">Nombre</th>
+         <th> scope ="col">Sueldo</th>
+
+
+         <th scope="col">opciones</th>
+
+     </tr>
+    </thread>
+    <tbody> 
+        <tr>
+            <th scope="row">1</th>
+            <th>32</th>
+            <th>Juan Perez</th>
+            <th>3000</th>
+        </tr>
+    </tbody>
+    <tr>
+        <botton class="btn btn-succes "Editar</botton>
+        <botton class="btn btn-succes "Eliminar</botton>
+    </tr>
+</table>
+
+<br />
+<h3>Nuevo Movimiento</h3>
+
+<label>Usuario</label>
+<select class="form-control">
+    <option selected value="Ingreso">Seleccionar usuario</option>
+    <option selected value="Egreso">Juan Perez </option>
+</select>
+
+<label>Contidad</label>
+<input class="form-control" type="number" />
+<label>Tipo</label>
+<select class="form-control">
+    <option selected value="Ingreso">Ingreso</option>
+    <option selected value="Egreso">Egreso</option>
+</select>
+<label>Descripcion</label>
+<input type="text" class="form-control" />
+
+
+Boton de confirmación
+<br />
+<button class="btn btn-primary">Guardar</button>
+<label>Procesando...</label>
+
+
+
+@code {
+
+}
